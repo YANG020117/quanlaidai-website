@@ -1,48 +1,76 @@
 import { useNavigate } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
+
+// TODO: 把图片放到 src/assets/ 文件夹，然后取消下面的注释
+// import product1 from '../assets/product1.jpg'
+// import product2 from '../assets/product2.jpg'
+// import product3 from '../assets/product3.jpg'
+// import product4 from '../assets/product4.jpg'
+// import product5 from '../assets/product5.jpg'
+// import product6 from '../assets/product6.jpg'
+
+// 临时占位图片（灰色块）
+const placeholderImg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23e2e8f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%2394a3b8"%3E图片占位%3C/text%3E%3C/svg%3E'
 
 const Products = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   
   const products = [
-    { id: 1, name: '智能插座系列', icon: '🔌', desc: '面向社区低速电动车充电场景，安全便捷。' },
-    { id: 2, name: '智能充电柜系列', icon: '📦', desc: '内置消防设施，关门给电、开门断电，使用寿命>10年。' },
-    { id: 3, name: '换电柜系列', icon: '🔄', desc: '提供Saas系统服务，数据完全隔离，支持小区域换电运营。' },
-    { id: 4, name: '汽车充电桩系列', icon: '🚗', desc: '交流慢充7KW、快充21KW、直流快充60KW/120KW。' },
-    { id: 5, name: '电池快速检测设备', icon: '🔋', desc: '全国独家研发，立柱式/手持式检测，电池回收柜。' },
-    { id: 6, name: '智慧云平台', icon: '☁️', desc: '"云-边-端"架构，大数据分析中台，充电SaaS系统。' }
-  ];
+    { id: 1, name: '智能插座系列', desc: '面向社区低速电动车充电场景，安全便捷。', img: placeholderImg },
+    { id: 2, name: '智能充电柜系列', desc: '内置消防设施，关门给电、开门断电。', img: placeholderImg },
+    { id: 3, name: '换电柜系列', desc: 'Saas系统服务，数据完全隔离。', img: placeholderImg },
+    { id: 4, name: '汽车充电桩系列', desc: '7KW-120KW全功率段覆盖。', img: placeholderImg },
+    { id: 5, name: '电池快速检测设备', desc: '全国独家研发，3分钟快速检测。', img: placeholderImg },
+    { id: 6, name: '智慧云平台', desc: '"云-边-端"架构，大数据分析。', img: placeholderImg }
+  ]
 
   return (
-    <section id="products" className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container-custom mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gradient">
           产品中心
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+          全来电科技产品线覆盖整个充电产业链条，具有自主知识产权
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-            <div 
-              key={product.name}
+            <div
+              key={product.id}
               onClick={() => navigate(`/product/${product.id}`)}
-              className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              className="group bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer card-hover"
             >
-              <div className="text-4xl mb-3">{product.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{product.desc}</p>
-              <div className="mt-3 text-blue-600 text-sm">查看详情 →</div>
+              {/* 图片占位区域 */}
+              <div className="h-48 overflow-hidden bg-gray-200 flex items-center justify-center">
+                <img 
+                  src={product.img} 
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{product.name}</h3>
+                <p className="text-gray-600 text-sm mb-4">{product.desc}</p>
+                <div className="flex items-center text-blue-600 font-medium group-hover:gap-2 transition-all">
+                  查看详情 <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        <div className="text-center mt-8">
-          <button 
+
+        <div className="text-center mt-12">
+          <button
             onClick={() => navigate('/products')}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="btn-primary text-white px-8 py-3 rounded-full font-semibold shadow-lg"
           >
-            查看更多产品
+            查看更多产品 <ArrowRight className="w-5 h-5 inline ml-1" />
           </button>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products

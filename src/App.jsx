@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
+import Home from './pages/Home'  // ← 改成 HomeFullpage
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Cases from './pages/Cases'
@@ -18,7 +18,7 @@ function App() {
         <Navbar />
         <main className="pt-16">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />  {/* ← 改成 HomeFullpage */}
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cases" element={<Cases />} />
