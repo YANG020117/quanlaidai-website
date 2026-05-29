@@ -54,6 +54,7 @@ const Home = () => {
       title: "智能充电柜",
       front: "内置消防，关门给电开门断电",
       back: "独创防触电技术，柜体防爆，内置烟感报警和自动消防设施，使用寿命>10年。",
+      // backImage: product1Back  // 添加图片
     },
     {
       icon: "🚗",
@@ -352,6 +353,7 @@ const Home = () => {
                       backContent={card.back}
                       icon={card.icon}
                       title={card.title}
+                      backImage={card.backImage} 
                     />
                   </div>
                 </FloatingCard>
